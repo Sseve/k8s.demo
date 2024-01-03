@@ -21,13 +21,14 @@ spec:
       serviceAccountName: nfs-client-provisioner
       containers:
         - name: nfs-client-provisioner
-          image: web-harbor.yuzhua-test.com/sig-storage/nfs-subdir-external-provisioner@sha256:f741e403b3ca161e784163de3ebde9190905fdbf7dfaa463620ab8f16c0f6423
+          # 该镜像提前下载到自己的私有仓库
+          image: xxxxx.com/sig-storage/nfs-subdir-external-provisioner@sha256:f741e403b3ca161e784163de3ebde9190905fdbf7dfaa463620ab8f16c0f6423
           volumeMounts:
             - name: nfs-client-root
               mountPath: /persistentvolumes
           env:
             - name: PROVISIONER_NAME
-              value: nfsserver.com/sharepath
+              value: nfsserver.com/sharepath   # nfs共享存储地址
             - name: NFS_SERVER
               value: nfsserver.com
             - name: NFS_PATH
